@@ -12,15 +12,15 @@ public class Evaluator
     {
         var postFix = string.Empty;
         var stack = new Stack<char>();
-        string acum = " ";
+        string numberBuffer  = " ";
         foreach (var item in infix)
         {
             if (IsOperator(item))
             {
-                if (acum != "")
+                if (numberBuffer != "")
                 {
-                    postFix += acum + " ";
-                    acum = " ";
+                    postFix += numberBuffer + " ";
+                    numberBuffer = " ";
                 }
                 if (item == '(')
                 {
@@ -45,12 +45,12 @@ public class Evaluator
             }
             else if (item != ' ')
             {
-                acum += item;
+                numberBuffer += item;
             }
         }
-        if (acum != "")
+        if (numberBuffer != "")
         {
-            postFix += acum + " ";
+            postFix += numberBuffer + " ";
         }
         while (stack.Count > 0)
         {
